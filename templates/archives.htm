@@ -1,0 +1,55 @@
+$def with (aclist,base_url,pages)
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>文章归档 | 三流编码员</title>
+<link rel="stylesheet" href="$base_url/static/css/style.css">
+<link rel="stylesheet" href="http://www.36coder.com/wp-content/plugins/codecolorer/codecolorer.css?ver=0.9.9">
+<link rel="alternate" type="application/rss+xml" title="三流编码员" href="">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+<header id="main-header">
+<div class="container">
+<a id="logo" href="$base_url" title="三流编码员">三流编码员</a>
+<nav>
+	<ul>
+		$for pl in pages:
+			<li><a href="$base_url/news/$pl.get('post_name')">$pl.get('title')</a></li>
+		<li><a href="$base_url/archives">文章存档</a></li>
+		<li><a href="$base_url/links">友情链接</a></li>
+	</ul>
+</nav>
+</div>
+</header>
+
+<div id="main" class="container page">
+<div class="content">
+<article class="post block">
+<h1 class="title">文章存档</h1>
+<div class="entry archives">
+$for pls in aclist:
+	<h2>$pls.get('year')</h2>
+	<ul>
+	$for als in pls.get('list'):
+		<li><time datetime="item.created">$als.get('dateline')</time><a href="$base_url/view/$als.get('id')">$als.get('title')</a></li>
+	</ul>
+</div>
+</article>
+</div>
+</div>
+
+<!-- footer -->
+<footer id="main-footer">
+<div class="container">
+<p>Love is Love</p>
+<p>Mysql, Web.py and CentOS</p>
+</div>
+</footer>
+<div id="backtop" style="display:none;"><span>回到顶部</span></div>
+<script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+<script src="./static/js/prettify.js" type="text/javascript"></script>
+<script src="./static/js/backtop.js" type="text/javascript"></script>
+</body>
+</html>
